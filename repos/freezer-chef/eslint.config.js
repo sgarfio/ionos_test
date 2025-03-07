@@ -1,16 +1,10 @@
-/**
- * .eslint.js
- *
- * ESLint configuration file.
- */
-
+import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
-import vueTsEslintConfig from '@vue/eslint-config-typescript'
 
 export default [
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    files: ['**/*.{js,mjs,jsx,vue}'],
   },
 
   {
@@ -18,19 +12,12 @@ export default [
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
 
+  js.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
-  ...vueTsEslintConfig(),
 
   {
     rules: {
-      '@typescript-eslint/no-unused-expressions': [
-        'error',
-        {
-          allowShortCircuit: true,
-          allowTernary: true,
-        },
-      ],
       'vue/multi-word-component-names': 'off',
-    }
+    },
   }
 ]
